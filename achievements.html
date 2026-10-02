@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنجازاتنا - مدرسة الرصيفة الثانوية المهنية للبنين</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            margin-bottom: 40px;
+        }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .page-header p { font-size: 1.1rem; opacity: 0.9; }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        .filter-btn {
+            padding: 12px 25px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--text-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .achievement-card {
+            text-align: right;
+            padding: 30px;
+            border-right: 5px solid var(--accent-color);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 70%, rgba(245, 158, 11, 0.1));
+            pointer-events: none;
+        }
+        .achievement-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .achievement-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+        .achievement-date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        .achievement-desc {
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+        .medal {
+            font-size: 2.5rem;
+            float: left;
+            margin-right: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .medal { float: none; display: block; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+       <div class="logo">
+    <img src="IMAGES/شعار وزارة التربية والتعليم.png" alt="شعار وزارة التربية والتعليم" style="height: 100px;">
+</div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن المدرسة</a></li>
+            <li><a href="teachers.html">المدرسين</a></li>
+            <li><a href="btec.html">مشاريع BTEC</a></li>
+            <li><a href="achievements.html">الإنجازات</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+        </ul>
+        <button id="dark-mode-toggle">🌙 الوضع الليلي</button>
+    </nav>
+
+    <div class="page-header">
+        <h1>إنجازاتنا</h1>
+        <p>نفتخر بما حققه طلابنا ومعلمونا من إنجازات على المستوى المحلي والدولي</p>
+    </div>
+
+    <section class="container">
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterAchievements('all', event)">الكل</button>
+            <button class="filter-btn" onclick="filterAchievements('academic', event)">أكاديمي</button>
+            <button class="filter-btn" onclick="filterAchievements('sports', event)">رياضي</button>
+            <button class="filter-btn" onclick="filterAchievements('tech', event)">تقني</button>
+        </div>
+
+        <div class="grid" id="achievementsGrid">
+            <div class="card achievement-card" data-category="tech">
+                <span class="medal">🏆</span>
+                <h3>المركز الأول في مسابقة الروبوتات</h3>
+                <div class="achievement-date">📅 2023</div>
+                <p class="achievement-desc">حصل فريق المدرسة على المركز الأول في مسابقة الروبوتات على مستوى المملكة، بمشروع روبوت لمساعدة ذوي الاحتياجات الخاصة.</p>
+            </div>
+
+            <div class="card achievement-card" data-category="academic">
+                <span class="medal">🥇</span>
+                <h3>الميدالية الذهبية في أولمبياد الرياضيات</h3>
+                <div class="achievement-date">📅 2022</div>
+                <p class="achievement-desc">فاز الطالب [اسم الطالب] بالميدالية الذهبية في أولمبياد الرياضيات الدولي، متفوقاً على مشاركين من 20 دولة.</p>
+            </div>
+
+            <div class="card achievement-card" data-category="sports">
+                <span class="medal">⚽</span>
+                <h3>بطولة كرة القدم المدرسية</h3>
+                <div class="achievement-date">📅 2023</div>
+                <p class="achievement-desc">حصل فريق المدرسة على كأس بطولة كرة القدم على مستوى المديرية، بعد فوزه في المباراة النهائية 3-1.</p>
+            </div>
+
+            <div class="card achievement-card" data-category="academic">
+                <span class="medal">📜</span>
+                <h3>شهادة الجودة التعليمية</h3>
+                <div class="achievement-date">📅 2024</div>
+                <p class="achievement-desc">حصلت المدرسة على شهادة الجودة التعليمية من وزارة التربية والتعليم تقديراً لتميزها في الأداء الأكاديمي والإداري.</p>
+            </div>
+
+            <div class="card achievement-card" data-category="tech">
+                <span class="medal">💻</span>
+                <h3>المركز الثاني في هاكاثون البرمجة</h3>
+                <div class="achievement-date">📅 2023</div>
+                <p class="achievement-desc">حصل فريق طلاب BTEC على المركز الثاني في هاكاثون البرمجة، بمشروع تطبيق لحل مشاكل النقل المدرسي.</p>
+            </div>
+
+            <div class="card achievement-card" data-category="sports">
+                <span class="medal">🏀</span>
+                <h3>بطولة كرة السلة</h3>
+                <div class="achievement-date">📅 2022</div>
+                <p class="achievement-desc">فريق كرة السلة يحقق المركز الثالث على مستوى المحافظة، في بطولة استمرت لثلاثة أسابيع.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 مدرسة الرصيفة الثانوية المهنية للبنين</p>
+    </footer>
+
+    <script src="dark-mode.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function filterAchievements(category, event) {
+            let cards = document.querySelectorAll('.achievement-card');
+            let buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            cards.forEach(card => {
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

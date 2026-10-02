@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية - مدرسة الرصيفة الثانوية المهنية للبنين</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ====== البانر الرئيسي (Hero) ====== */
+        .hero {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* صورة خلفية للمدرسة - غير الرابط لصورة مدرستك */
+            background: url('IMAGES/school-bg.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            color: white;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+        
+        /* طبقة تعتيم فوق الصورة عشان النص يبين */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(37, 99, 235, 0.7));
+            z-index: 1;
+        }
+
+        /* المحتوى فوق الطبقة */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            /* تأثير زجاجي (Glassmorphism) */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: floatIn 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+            animation: fadeInDown 1s ease;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 35px;
+            line-height: 1.8;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* ====== شريط الإحصائيات (تم فصل المربعات) ====== */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px; /* مسافة بين المربعات لحل القلتش */
+            margin-top: -70px;
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        .stat-strip-item {
+            padding: 35px 20px;
+            text-align: center;
+            color: white;
+            border-radius: 20px; /* حواف مستديرة لكل مربع */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .stat-strip-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+        .stat-strip-item:nth-child(1) { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        .stat-strip-item:nth-child(2) { background: linear-gradient(135deg, #1e293b, #0f172a); }
+        .stat-strip-item:nth-child(3) { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .stat-strip-item:nth-child(4) { background: linear-gradient(135deg, #059669, #047857); }
+        
+        .stat-strip-item h3 { 
+            font-size: 2.8rem; 
+            margin-bottom: 8px; 
+            font-weight: 800;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        .stat-strip-item p { 
+            font-size: 1.05rem; 
+            opacity: 0.95; 
+            font-weight: 500;
+        }
+
+        /* ====== بطاقات المميزات ====== */
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .card:hover .feature-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        /* ====== قسم الدعوة للتواصل (CTA) ====== */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 70px 30px;
+            border-radius: 25px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 4s infinite;
+        }
+        .cta-section h2 { 
+            font-size: 2.3rem; 
+            margin-bottom: 15px; 
+            position: relative;
+            z-index: 2;
+        }
+        .cta-section p { 
+            font-size: 1.15rem; 
+            margin-bottom: 30px; 
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        .cta-section .btn {
+            position: relative;
+            z-index: 2;
+        }
+        .btn-white {
+            background: white;
+            color: var(--primary-color);
+        }
+        .btn-white:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* ====== حركات (Animations) ====== */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes floatIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* ====== التجاوب مع الموبايل ====== */
+        @media (max-width: 768px) {
+            .hero { height: auto; padding: 80px 15px; }
+            .hero-content { padding: 40px 25px; border-radius: 20px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .stats-strip { 
+                margin-top: -40px; 
+                grid-template-columns: 1fr 1fr; 
+                gap: 15px;
+            }
+            .stat-strip-item h3 { font-size: 1.8rem; }
+            .stat-strip-item { padding: 25px 15px; }
+            .cta-section h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+         <div class="logo">
+    <img src="IMAGES/شعار وزارة التربية والتعليم.png" alt="شعار وزارة التربية والتعليم" style="height: 100px;">
+</div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن المدرسة</a></li>
+            <li><a href="teachers.html">المدرسين</a></li>
+            <li><a href="btec.html">مشاريع BTEC</a></li>
+            <li><a href="achievements.html">الإنجازات</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+        </ul>
+        <button id="dark-mode-toggle">🌙 الوضع الليلي</button>
+    </nav>
+
+    <!-- البانر الرئيسي -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>مرحباً بكم في مدرسة الرصيفة الثانوية المهنية للبنين</h1>
+            <p>بيئة تعليمية متميزة لبناء جيل المستقبل، حيث يلتقي العلم بالإبداع والتقنية.</p>
+            <div class="hero-buttons">
+                <a href="about.html" class="btn">اكتشف المزيد عنا</a>
+                <a href="contact.html" class="btn btn-outline">سجل الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط الإحصائيات -->
+    <div class="stats-strip">
+        <div class="stat-strip-item">
+            <h3>+500</h3>
+            <p>طالب وطالبة</p>
+        </div>
+        <div class="stat-strip-item">
+            <h3>+50</h3>
+            <p>معلم ومعلمة</p>
+        </div>
+        <div class="stat-strip-item">
+            <h3>+20</h3>
+            <p>نشاط لا صفي</p>
+        </div>
+        <div class="stat-strip-item">
+            <h3>100%</h3>
+            <p>نسبة النجاح</p>
+        </div>
+    </div>
+
+    <!-- لماذا تختارنا -->
+    <section class="container">
+        <h2 style="text-align: center; margin-bottom: 15px; font-size: 2.3rem;">لماذا تختار مدرستنا؟</h2>
+        <p style="text-align: center; margin-bottom: 50px; color: #888; font-size: 1.1rem;">نقدم لك تجربة تعليمية متكاملة تجمع بين العلم والمهارة</p>
+        
+        <div class="grid">
+            <div class="card" style="text-align: right; padding: 35px;">
+                <span class="feature-icon">🎓</span>
+                <h3 style="color: var(--primary-color); margin-bottom: 10px;">تعليم متميز</h3>
+                <p style="line-height: 1.8;">نقدم أفضل المناهج التعليمية بأحدث الطرق التكنولوجية لضمان تفوق الطلاب.</p>
+            </div>
+            <div class="card" style="text-align: right; padding: 35px;">
+                <span class="feature-icon">🏫</span>
+                <h3 style="color: var(--primary-color); margin-bottom: 10px;">مرافق حديثة</h3>
+                <p style="line-height: 1.8;">مختبرات علمية، ملاعب رياضية، ومكتبة ضخمة مجهزة بأحدث الوسائل.</p>
+            </div>
+            <div class="card" style="text-align: right; padding: 35px;">
+                <span class="feature-icon">🚀</span>
+                <h3 style="color: var(--primary-color); margin-bottom: 10px;">أنشطة متنوعة</h3>
+                <p style="line-height: 1.8;">برامج لا منهجية لتطوير مهارات الطلاب في البرمجة، الرياضة، والفنون.</p>
+            </div>
+            <div class="card" style="text-align: right; padding: 35px;">
+                <span class="feature-icon">💼</span>
+                <h3 style="color: var(--primary-color); margin-bottom: 10px;">تأهيل لسوق العمل</h3>
+                <p style="line-height: 1.8;">برامج BTEC المهنية تؤهل الطلاب للالتحاق بسوق العمل مباشرة بعد التخرج.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- دعوة للتواصل -->
+    <section class="container">
+        <div class="cta-section">
+            <h2>هل أنت مستعد للانضمام إلينا؟</h2>
+            <p>سجل الآن وكن جزءاً من عائلة مدرستنا المتميزة.</p>
+            <a href="contact.html" class="btn btn-white">اتصل بالإدارة</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 مدرسة الرصيفة الثانوية المهنية للبنين</p>
+        <div style="margin-top: 15px;">
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">فيسبوك</a>
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">انستغرام</a>
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">تويتر</a>
+        </div>
+    </footer>
+
+    <script src="dark-mode.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

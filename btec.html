@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشاريع BTEC - مدرسة الرصيفة الثانوية المهنية للبنين</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            margin-bottom: 40px;
+        }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .page-header p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 0;
+            overflow: hidden;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+        .project-content h3 {
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+        .project-content p {
+            flex-grow: 1;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .btn-small {
+            padding: 10px 25px;
+            font-size: 0.9rem;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+    <img src="IMAGES/شعار وزارة التربية والتعليم.png" alt="شعار وزارة التربية والتعليم" style="height: 100px;">
+</div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن المدرسة</a></li>
+            <li><a href="teachers.html">المدرسين</a></li>
+            <li><a href="btec.html">مشاريع BTEC</a></li>
+            <li><a href="achievements.html">الإنجازات</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+        </ul>
+        <button id="dark-mode-toggle">🌙 الوضع الليلي</button>
+    </nav>
+
+    <div class="page-header">
+        <h1>مشاريع BTEC</h1>
+        <p>يقدم طلابنا في برنامج BTEC مشاريع عملية تدمج بين المعرفة النظرية والتطبيق العملي، مما يؤهلهم لسوق العمل أو الالتحاق بالجامعات.</p>
+    </div>
+
+    <section class="container">
+        <div class="grid">
+            <div class="card project-card">
+                <img src="IMAGES/project1.jpg" alt="مشروع الروبوتات">
+                <div class="project-content">
+                    <h3>🤖 مشروع الروبوتات التعليمية</h3>
+                    <p>قام الطلاب بتصميم وبناء روبوتات تعليمية باستخدام Arduino، لمساعدة الطلاب ذوي الاحتياجات الخاصة في عملية التعلم.</p>
+                    <div class="tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">برمجة</span>
+                        <span class="tag">إلكترونيات</span>
+                    </div>
+                    <a href="#" class="btn btn-small">عرض التفاصيل</a>
+                </div>
+            </div>
+
+            <div class="card project-card">
+                <img src="IMAGES/project2.jpg" alt="مشروع الاستدامة">
+                <div class="project-content">
+                    <h3>🌱 مشروع الحديقة الذكية</h3>
+                    <p>نظام ري أوتوماتيكي يعمل بالطاقة الشمسية لسقي النباتات في حديقة المدرسة، مع تطبيق جوال للتحكم عن بعد.</p>
+                    <div class="tags">
+                        <span class="tag">طاقة شمسية</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">استدامة</span>
+                    </div>
+                    <a href="#" class="btn btn-small">عرض التفاصيل</a>
+                </div>
+            </div>
+
+            <div class="card project-card">
+                <img src="IMAGES/project3.jpg" alt="تطبيق المدرسة">
+                <div class="project-content">
+                    <h3>📱 تطبيق المدرسة الذكي</h3>
+                    <p>تطبيق جوال من تطوير الطلاب يسهل التواصل بين الإدارة، المعلمين، وأولياء الأمور، ويشمل الجدول الدراسي والنتائج.</p>
+                    <div class="tags">
+                        <span class="tag">Flutter</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">تطبيقات</span>
+                    </div>
+                    <a href="#" class="btn btn-small">عرض التفاصيل</a>
+                </div>
+            </div>
+
+            <div class="card project-card">
+                <img src="IMAGES/project4.jpg" alt="مشروع التجارة الإلكترونية">
+                <div class="project-content">
+                    <h3>🛒 متجر إلكتروني</h3>
+                    <p>تصميم وتطوير متجر إلكتروني لبيع المنتجات المدرسية، مع نظام دفع إلكتروني وإدارة مخزون.</p>
+                    <div class="tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JS</span>
+                        <span class="tag">تجارة إلكترونية</span>
+                    </div>
+                    <a href="#" class="btn btn-small">عرض التفاصيل</a>
+                </div>
+            </div>
+
+            <div class="card project-card">
+                <img src="IMAGES/project5.jpg" alt="مشروع التصميم">
+                <div class="project-content">
+                    <h3>🎨 الهوية البصرية للمدرسة</h3>
+                    <p>تصميم شعار جديد، مطبوعات، وإعلانات للمدرسة باستخدام برامج التصميم الاحترافية.</p>
+                    <div class="tags">
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">تصميم</span>
+                    </div>
+                    <a href="#" class="btn btn-small">عرض التفاصيل</a>
+                </div>
+            </div>
+
+            <div class="card project-card">
+                <img src="IMAGES/project6.jpg" alt="مشروع الصيانة">
+                <div class="project-content">
+                    <h3>🔧 صيانة الأجهزة</h3>
+                    <p>ورشة عملية لصيانة الحواسيب والأجهزة الإلكترونية في المدرسة، وتقديم خدمة مجتمعية.</p>
+                    <div class="tags">
+                        <span class="tag">هاردوير</span>
+                        <span class="tag">صيانة</span>
+                        <span class="tag">خدمة مجتمع</span>
+                    </div>
+                    <a href="#" class="btn btn-small">عرض التفاصيل</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 مدرسة الرصيفة الثانوية المهنية للبنين</p>
+    </footer>
+
+    <script src="dark-mode.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
